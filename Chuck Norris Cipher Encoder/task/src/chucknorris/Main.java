@@ -29,6 +29,20 @@ public class Main {
         }
 
     }
+
+    static int s = 1;
+    public static void connectMatch(char c, String a, int i){
+        if(c == a.charAt(i)){
+            ++s;
+            return;
+        }else{
+            while(s>0){System.out.print("0");--s;}
+            if(i+1 != a.length())
+                System.out.print(" ");
+            c = a.charAt(i);
+            ++s;
+        }
+    }
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Input string:");
@@ -44,13 +58,26 @@ public class Main {
             System.out.println();
         }
 
-
+        boolean init;
+        char prev = '1';
         for(String a: arr){
             len = a.length();
-            int s = 1;
+            s = 1;
             char c = a.charAt(0);
+            init = false;
 
             for(int i = 1; i<len;i++){
+                if(init && prev == a.charAt(0)){
+                    if(c == a.charAt(i)){
+                        connectMatch(c,a,i);
+                        prev = c;
+                        continue;
+                    }else{
+                        prev = c;
+                    }
+                }else{
+                    init = true;
+                }
                 if(c == a.charAt(i)){
                     ++s;
                     continue;
@@ -63,7 +90,7 @@ public class Main {
                     while(s>0){System.out.print("0");--s;}
                     if(i+1!=len)
                         System.out.print(" ");
-                    c=a.charAt(i);
+                    c = a.charAt(i);
                     s++;
                 }
             }
