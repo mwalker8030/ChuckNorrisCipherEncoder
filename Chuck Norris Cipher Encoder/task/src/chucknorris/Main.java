@@ -2,38 +2,14 @@ package chucknorris;
 import java.util.Scanner;
 
 public class Main {
-
-    /***
-     * Helper method to see the 7 bit Ascii unicode value and the encoded
-     *  version of the 7 bit Ascii unicode.
-     * @param a
-     *  character to encode into 7 bit Ascii unicode and then display
-     *      the chuck norris code.
-     */
-    public static void encode(char a) {
-        String d = Integer.toBinaryString(a);
-        System.out.printf("%c = %07d :", a, Integer.parseInt(d));
-        String dd = String.format("%07d\n", Integer.parseInt(d));
-        int len = dd.length(), s = 1;
-        char c = dd.charAt(0);
-        for (int i = 1; i < len; i++) {
-            if (c == dd.charAt(i)) {
-                ++s;
-            } else {
-                if (c == '1') {
-                    System.out.print("0 ");
-                } else {
-                    System.out.print("00 ");
-                }
-                while (s > 0) {
-                    System.out.print("0");
-                    --s;
-                }
-                if (i + 1 != len)
-                    System.out.print(" ");
-                c = dd.charAt(i);
-                s++;
-            }
+    public static class Chuck{
+        StringBuilder code, enc;
+        char c;
+        public Chuck(){
+            code = new StringBuilder();
+            enc = new StringBuilder("The result:\n");
+            System.out.println("Input string:");
+            c = ' ';
         }
 
     }
@@ -41,47 +17,53 @@ public class Main {
     static int s = 1;
     static boolean DEBUG = false;
     public static void main(String[] args) {
+
+        /*
+        StringBuilder enc = new StringBuilder();
+        enc.append("Input string:\n\nThe result:\n");
+
+
+         */
+        Chuck obj = new Chuck();
         Scanner scan = new Scanner(System.in);
-        System.out.println("Input string:");
-        String u = scan.nextLine();
-        int len = u.length();
-        System.out.println("\nThe result:");
-        StringBuilder con = new StringBuilder();
+        //StringBuilder code = new StringBuilder();
+        String input = scan.nextLine();
+        int len = input.length();
+
         for (int i = 0; i < len; i++) {
-            String d = Integer.toBinaryString(u.charAt(i));
-            con.append(String.format("%07d", Integer.parseInt(d)));
+            String d = Integer.toBinaryString(input.charAt(i));
+            obj.code.append(String.format("%07d", Integer.parseInt(d)));
             if(DEBUG){
-                encode(u.charAt(i));
-                System.out.println(con);
+                //deprecated
             }
         }
 
-        s = 1;
-        char c = con.charAt(0);
-        len = con.length();
-        for (int i = 1; i < len; i++) {
-            while (c == con.charAt(i)) {
+        s = 0;
+        obj.c = obj.code.charAt(0);
+        len = obj.code.length();
+        for (int i = 0; i <= len; i++) {
+            while (i<len && obj.c == obj.code.charAt(i)) {
                 ++s;
-                if (i + 1 < len) {
-                    c = con.charAt(i);
-                    ++i;
-                    continue;
-                }
-                break;
+                ++i;
             }
 
-            if (c == '1') {
-                System.out.print("0 ");
-            } else {
-                System.out.print("00 ");
-            }
-            while (s > 0) {
-                System.out.print("0");
-                --s;
-            }
-            if (i + 1 != len)
-                System.out.print(" ");
+            chuckIt(obj, i);
         }
 
+        System.out.print(obj.enc);
+    }
+
+    private static void chuckIt(Chuck obj, int i) {
+        obj.enc.append(obj.c == '1' ? "0 " : "00 ");
+
+        if(i < obj.code.length()) obj.c = obj.code.charAt(i);
+
+        while (s > 0) {
+            obj.enc.append("0");
+            --s;
+        }
+        s=1;
+        if (i < obj.code.length())
+            obj.enc.append(" ");
     }
 }

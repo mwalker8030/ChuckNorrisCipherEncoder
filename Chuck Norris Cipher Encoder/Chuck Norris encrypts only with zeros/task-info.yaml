@@ -114,22 +114,8 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/23026#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #96
-
-    To produce a series of same value bits, should be used two consecutive blocks, so printed code should contain even amount of blocks
-
-    Please find below the output of your program during this failed test.
-    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
-
-    ---
-
-    Input string:
-    &gt; greetings!
-
-    The result:
-    0 00 00 00 0 0000 000 00 00 0 0 00 00 00 00 00 0 0 00 0 0 00 00 00 00 0 0 00 0 0 00 000 00 0 0 0 00 000 00 00 0 0 0 00 00 0 00 00 00 0 0 000 00 00 00 00 00 0 0000 000 00 00 0 0000 0 0 0 00 0000 0 0
-  time: "Tue, 03 Jan 2023 15:25:13 UTC"
+  message: Congratulations!
+  time: "Thu, 05 Jan 2023 04:19:17 UTC"
 record: -1
