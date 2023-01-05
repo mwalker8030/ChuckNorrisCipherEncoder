@@ -15,27 +15,17 @@ public class Main {
     }
 
     static int s = 1;
-    static boolean DEBUG = false;
     public static void main(String[] args) {
 
-        /*
-        StringBuilder enc = new StringBuilder();
-        enc.append("Input string:\n\nThe result:\n");
-
-
-         */
         Chuck obj = new Chuck();
         Scanner scan = new Scanner(System.in);
-        //StringBuilder code = new StringBuilder();
         String input = scan.nextLine();
         int len = input.length();
 
         for (int i = 0; i < len; i++) {
             String d = Integer.toBinaryString(input.charAt(i));
             obj.code.append(String.format("%07d", Integer.parseInt(d)));
-            if(DEBUG){
-                //deprecated
-            }
+
         }
 
         s = 0;
@@ -46,7 +36,6 @@ public class Main {
                 ++s;
                 ++i;
             }
-
             chuckIt(obj, i);
         }
 
