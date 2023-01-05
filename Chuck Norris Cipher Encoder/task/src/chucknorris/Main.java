@@ -3,8 +3,16 @@ import java.util.Scanner;
 
 public class Main {
 
+    /***
+     * Helper method to see the 7 bit Ascii unicode value and the encoded
+     *  version of the 7 bit Ascii unicode.
+     * @param a
+     *  character to encode into 7 bit Ascii unicode and then display
+     *      the chuck norris code.
+     */
     public static void encode(char a) {
         String d = Integer.toBinaryString(a);
+        System.out.printf("%c = %07d :", a, Integer.parseInt(d));
         String dd = String.format("%07d\n", Integer.parseInt(d));
         int len = dd.length(), s = 1;
         char c = dd.charAt(0);
@@ -31,24 +39,23 @@ public class Main {
     }
 
     static int s = 1;
-
+    static boolean DEBUG = false;
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Input string:");
         String u = scan.nextLine();
         int len = u.length();
         System.out.println("\nThe result:");
-        //ArrayList<String> arr = new ArrayList<>();
         StringBuilder con = new StringBuilder();
         for (int i = 0; i < len; i++) {
             String d = Integer.toBinaryString(u.charAt(i));
-            System.out.printf("%c = %07d :", u.charAt(i), Integer.parseInt(d));
-            encode(u.charAt(i));
             con.append(String.format("%07d", Integer.parseInt(d)));
-            System.out.println();
+            if(DEBUG){
+                encode(u.charAt(i));
+                System.out.println(con);
+            }
         }
 
-        System.out.println(con);
         s = 1;
         char c = con.charAt(0);
         len = con.length();
