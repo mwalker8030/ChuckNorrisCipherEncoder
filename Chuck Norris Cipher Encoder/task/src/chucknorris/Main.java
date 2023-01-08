@@ -91,7 +91,8 @@ public class Main {
     }
     @SuppressWarnings("StringConcatenationInLoop")
     private static void unChuckIt(Chuck obj){
-        //System.out.println("decoding " + obj.enc + " to ");
+        //debug information
+            //System.out.println("decoding " + obj.enc + " to ");
 
         obj.tempString = "";
         StringBuilder temp = (obj.process == Process.ENCODE ? obj.encryption : obj.code);
@@ -139,8 +140,8 @@ public class Main {
 
             ++obj.index;
         }
-        //System.out.println(obj.dec);
-        //decode it into a character symbol
+        //debug information
+            //System.out.println(obj.dec);
     }
 
     private static char bitToChar(String output){

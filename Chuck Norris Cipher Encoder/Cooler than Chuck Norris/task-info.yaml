@@ -128,5 +128,17 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/learn/step/23028#comment
-status: Unchecked
-record: -1
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #1
+
+    When the program just started, output should contain exactly 1 non-empty line, containing &quot;Please input operation (encode/decode/exit):&quot; as it shown in the example, followed by an input
+
+    Please find below the output of your program during this failed test.
+
+    ---
+
+    Input encoded string:
+  time: "Sun, 08 Jan 2023 11:32:16 UTC"
+record: 5
