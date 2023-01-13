@@ -8,7 +8,7 @@ public class Encode extends Message {
     public Encode(){
         super();
         encryption = new StringBuilder();
-            System.out.println("Input string:");
+        System.out.println("Input string:");
         Scanner scan = new Scanner(System.in);
         this.input = scan.nextLine();
         super.len = input.length();
