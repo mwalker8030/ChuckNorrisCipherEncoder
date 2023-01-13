@@ -127,6 +127,52 @@ files:
       }
     }
   learner_created: false
+- name: src/chucknorris/User.java
+  visible: true
+  learner_created: true
+- name: src/chucknorris/UserInputException.java
+  visible: true
+  learner_created: true
+- name: src/chucknorris/Operate.java
+  visible: true
+  learner_created: true
+- name: src/chucknorris/Encode.java
+  visible: true
+  learner_created: true
+- name: src/chucknorris/Message.java
+  visible: true
+  learner_created: true
+- name: src/chucknorris/Decode.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/23028#comment
-status: Unchecked
-record: -1
+status: Failed
+feedback:
+  message: |2
+
+    FAILURE: Build failed with an exception.
+
+    * What went wrong:
+    Could not resolve all files for configuration &#39;classpath&#39;.
+    &gt; Could not resolve com.github.hyperskill:hs-gradle-plugin:release-SNAPSHOT.
+      Required by:
+          unspecified:unspecified:unspecified
+       &gt; Could not resolve com.github.hyperskill:hs-gradle-plugin:release-SNAPSHOT.
+          &gt; Unable to load Maven meta-data from https://packages.jetbrains.team/maven/p/academy/hyperskill-hspc/com/github/hyperskill/hs-gradle-plugin/release-SNAPSHOT/maven-metadata.xml.
+             &gt; Could not HEAD &#39;https://packages.jetbrains.team/maven/p/academy/hyperskill-hspc/com/github/hyperskill/hs-gradle-plugin/release-SNAPSHOT/maven-metadata.xml&#39;.
+                &gt; No such host is known (packages.jetbrains.team)
+       &gt; Could not resolve com.github.hyperskill:hs-gradle-plugin:release-SNAPSHOT.
+          &gt; Unable to load Maven meta-data from https://jitpack.io/com/github/hyperskill/hs-gradle-plugin/release-SNAPSHOT/maven-metadata.xml.
+             &gt; Could not GET &#39;https://jitpack.io/com/github/hyperskill/hs-gradle-plugin/release-SNAPSHOT/maven-metadata.xml&#39;.
+                &gt; No such host is known (jitpack.io)
+
+    * Try:
+    &gt; Run with --stacktrace option to get the stack trace.
+    &gt; Run with --info or --debug option to get more log output.
+    &gt; Run with --scan to get full insights.
+
+    * Get more help at https://help.gradle.org
+
+    BUILD FAILED in 959ms
+  time: "Fri, 13 Jan 2023 05:18:44 UTC"
+record: 4
