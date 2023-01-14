@@ -5,12 +5,16 @@ import java.util.Scanner;
 public class Decode extends Message{
 
     StringBuilder decryption;
+    boolean flagged;
     String input;
+    char prevBit;
 
     Decode(){
         super();
+        flagged = false;
         decryption = new StringBuilder();
         input = "";
+        prevBit = '\0';
         System.out.println("Input encoded string:");
         Scanner scan = new Scanner(System.in);
         try{
@@ -21,7 +25,9 @@ public class Decode extends Message{
             super.len = input.length();
             super.code.append(input);
             unChuckIt();
+            if(flagged){ throw new UserInputException("Encoded string is not valid.\n");}
             makeChar();
+            if(flagged){ throw new UserInputException("Encoded string is not valid.\n");}
             System.out.println("Decoded string:\n" + decryption + "\n");
 
         }catch (UserInputException ex){
@@ -37,6 +43,8 @@ public class Decode extends Message{
         super.tempChar = ' ';
         super.sequence = 0;
         super.len = temp.length();
+
+
         for (super.index = 0; super.index < super.len; super.index++)
         {
             //find the value of the character
@@ -45,6 +53,14 @@ public class Decode extends Message{
             //hit a ws and identify symbol as one or zero
             super.tempChar = (super.sequence == 2 ? '0' : '1');
 
+            //check if this is valid bit
+            if(checkLastBit()){
+                return;
+            }
+
+            //update last bit
+            storeLastBit();
+
             //count zeros until another ws
             super.sequence = findWhitespace();
 
@@ -52,10 +68,37 @@ public class Decode extends Message{
             for (;super.sequence > 0; --super.sequence){
                 super.tempString += super.tempChar;
             }
+
+            if(flagged){return;}
         }
         //print decrypted value if needed for debug purposes
         //System.out.println("decrypted code is : " + obj.tempString);
-        super.bits.append(super.tempString);
+            super.bits.append(super.tempString);
+    }
+
+    private boolean checkLastBit(){
+        //if the last bit is null
+        if(prevBit == '\0' ){
+            prevBit = super.tempChar;
+            return false; //store it
+        }
+
+        //get the last bit in the string
+        //check if the last bit is the same as the current bit
+        if(prevBit == super.tempChar || super.sequence > 2){
+            //if the last bit is the same as the current bit
+            //throw encoded string is not valid
+            flagged = true;
+            return true;
+        }
+
+        //bit is valid
+        return false;
+    }
+
+    private void storeLastBit(){
+        //store the last bit read in the string.
+        prevBit = super.tempChar;
     }
 
     private int findWhitespace(){
@@ -64,6 +107,7 @@ public class Decode extends Message{
         int counter = 0;
         super.len = temp.length();
         while(super.index < super.len && !Character.isWhitespace(temp.charAt(super.index))){
+            if(temp.charAt(super.index) != '0'){flagged = true;}
             ++counter;
             ++super.index;
         }
@@ -90,6 +134,8 @@ public class Decode extends Message{
 
             ++super.index;
         }
+
+        if(counter != 0){ flagged = true; }
         //System.out.println(obj.dec);
         //decode it into a character symbol
     }
