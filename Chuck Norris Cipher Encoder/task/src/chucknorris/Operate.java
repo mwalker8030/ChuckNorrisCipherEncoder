@@ -10,9 +10,7 @@ public class Operate{
     }
 
 
-    public void Operate(){
-
-    }
+    public void Operate(){}
 
     public String pickOperation(String choice) {
         Message msg = new Message();

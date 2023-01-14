@@ -19,9 +19,6 @@ public class User {
     }
 
     public boolean isValidResponse(){
-        if( !input.equals("encode") && !input.equals("decode") && !input.equals("exit")){
-            return false;
-        }
-        return true;
+        return input.equals("encode") || input.equals("decode") || input.equals("exit");
     }
 }

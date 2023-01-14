@@ -25,7 +25,6 @@ public class Decode extends Message{
             super.len = input.length();
             super.code.append(input);
             unChuckIt();
-            if(flagged){ throw new UserInputException("Encoded string is not valid.\n");}
             makeChar();
             if(flagged){ throw new UserInputException("Encoded string is not valid.\n");}
             System.out.println("Decoded string:\n" + decryption + "\n");
@@ -36,13 +35,12 @@ public class Decode extends Message{
     }
 
     private void unChuckIt(){
-        //System.out.println("decoding " + obj.enc + " to ");
 
+        //initialize fields to use
         super.tempString = "";
-        StringBuilder temp = super.code;
         super.tempChar = ' ';
         super.sequence = 0;
-        super.len = temp.length();
+        super.len = super.code.length();
 
 
         for (super.index = 0; super.index < super.len; super.index++)
@@ -71,8 +69,8 @@ public class Decode extends Message{
 
             if(flagged){return;}
         }
-        //print decrypted value if needed for debug purposes
-        //System.out.println("decrypted code is : " + obj.tempString);
+
+            //print decrypted value if needed for debug purposes
             super.bits.append(super.tempString);
     }
 
